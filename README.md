@@ -1,13 +1,13 @@
-<h1 style="align:center">DEV NOTE PRO</h1>
+<h1 align="center">DEV NOTE PRO</h1>
 
-![CI](https://github.com/thuongtruong1009/dev-note.github/workflows/ci.yml/badge.svg)
+![CI](https://github.com/thuongtruong1009/notedev.github/workflows/ci.yml/badge.svg)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/7f78f2b7-50a9-4a7c-a6a5-b7b8e2acd767/deploy-status)](https://notedev.netlify.app/)
 
 ---
 ### Screen shots
-![screenshots](./src/assets/screenshots/light_main_screen.png)
+![screenshots](/screenshots/light_main_screen.png)
 
-![screenshots](./src/assets/screenshots/dark_main_screen.png)
+![screenshots](/screenshots/dark_main_screen.png)
 
 ---
 ### How to install - ViteJs 3 template at https://vitejs.dev/
@@ -41,17 +41,16 @@ npm run dev
 ```script
 npm run build
 ```
-+ To deploy project on GithubPage
++ To test with npm
 ```script
-add dist folder on repository
-In setting tab, click to Github Page and deploy it. The URL of your website like as https://thuongtruong1009.github.io/notedev/
+npm run test
 ```
 ---
 ### Refference
 - Recommended IDE Setup [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
 - Use Netlify to build product - https://netlify.com/
 - Get icon packages at https://ionicons.com/
-- Learn HTML/CSS/Javascipt at https://github.com/thuongtruong1009/
+- Learn Front-end for beginner at at https://github.com/thuongtruong1009/challenge-resposive-web-design
 ---
 ### --> You can clone/fork/download or contribute and discuss them to develop. It can save it on release history.
 ### --> All problems or contact should take a mail to ititiu19228@student.hcmiu.edu.vn
