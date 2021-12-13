@@ -14,40 +14,37 @@
         name="newToDo"
       />
       <button type="submit">
-        <ion-icon name="bookmarks-outline"></ion-icon> Add
+        <ion-icon name="bookmarks-outline"></ion-icon>Add
       </button>
     </form>
     <div class="un-complete">
-      <h2>UNCOMPLETED<img src="/assets/cross.ico" /></h2>
+      <h2>
+        UNCOMPLETED
+        <img src="/assets/cross.ico" />
+      </h2>
       <ul v-for="(data, index) in listData" :key="data.id">
         <span>{{ index }}</span>
         <li>
           {{ data.content }}
           <div class="tool">
-            <ion-icon
-              id="trash"
-              name="trash-outline"
-              @click="removeToDo(index)"
-            ></ion-icon>
-            <ion-icon
-              id="check"
-              name="checkmark-done-outline"
-              @click="doneTodo(data, index)"
-            ></ion-icon>
+            <ion-icon id="trash" name="trash-outline" @click="removeToDo(index)"></ion-icon>
+            <ion-icon id="check" name="checkmark-done-outline" @click="doneTodo(data, index)"></ion-icon>
           </div>
         </li>
       </ul>
     </div>
     <div class="complete">
-      <h2>COMPLETED <img src="/assets/tick.ico" /></h2>
+      <h2>
+        COMPLETED
+        <img src="/assets/tick.ico" />
+      </h2>
       <ul v-for="(unData, unIndex) in unListData" :key="unData.unId">
         <span
           v-bind:style="{
             textDecoration: 'line-through',
             background: 'rgba(0, 177, 59, 0.39)',
           }"
-          >{{ unIndex }}</span
-        >
+        >{{ unIndex }}</span>
         <li
           v-bind:style="{
             textDecoration: 'line-through',
@@ -69,16 +66,19 @@
   </div>
   <div class="statistical">
     <div>
-      <p>Total: {{ listData.length + unListData.length }}</p>
-      <p>Unfinish: {{ listData.length }}</p>
-      <p>Done: {{ unListData.length }}</p>
       <p>
+        <ion-icon name="wallet-outline"></ion-icon>
+        Total: {{ listData.length + unListData.length }}
+      </p>
+      <p><ion-icon name="extension-puzzle-outline"></ion-icon>Unfinish: {{ listData.length }}</p>
+      <p><ion-icon name="cloud-done-outline"></ion-icon>Done: {{ unListData.length }}</p>
+      <p><ion-icon name="analytics-outline"></ion-icon>
         Process:
         {{ (unListData.length / (listData.length + unListData.length)) * 100 }}%
       </p>
     </div>
     <div>
-      <p>Last note: {{ this.timeData }}</p>
+      <p><ion-icon name="pencil-outline"></ion-icon>Last note: {{ this.timeData }}</p>
     </div>
   </div>
   <div class="footer">
@@ -90,8 +90,8 @@
         v-bind:style="{ filter: 'invert(100%)' }"
       ></ion-icon>
     </div>
-    <a class="author" href="https://github.com/thuongtruong1009/"
-      ><p>view source code</p>
+    <a class="author" href="https://github.com/thuongtruong1009/">
+      <p>view source code</p>
       <ion-icon name="logo-github"></ion-icon>
     </a>
   </div>
