@@ -5,9 +5,9 @@
 
 ---
 ### Screen shots
-![screenshots](/screenshots/light_main_screen.png)
+![screenshots](public/screenshots/light_main_screen.png)
 
-![screenshots](/screenshots/dark_main_screen.png)
+![screenshots](public/screenshots/dark_main_screen.png)
 
 ---
 ### How to install - ViteJs 3 template at https://vitejs.dev/

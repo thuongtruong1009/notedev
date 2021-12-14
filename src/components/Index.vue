@@ -1,99 +1,132 @@
 <template>
-  <header>
-    <img alt="Vue logo" src="/label_main.png" />
-    <h1>{{ msg }}</h1>
-  </header>
-  <div class="container">
-    <form @submit.prevent="addNewToDo">
-      <input
-        type="text"
-        placeholder="✎ add somethings daily to do..."
-        onfocus="this.placeholder = ''"
-        onblur="this.placeholder = '✎ add somethings daily to do...'"
-        v-model="inputData"
-        name="newToDo"
-      />
-      <button type="submit">
-        <ion-icon name="bookmarks-outline"></ion-icon>Add
-      </button>
-    </form>
-    <div class="un-complete">
-      <h2>
-        UNCOMPLETED
-        <img src="/assets/cross.ico" />
-      </h2>
-      <ul v-for="(data, index) in listData" :key="data.id">
-        <span>{{ index }}</span>
-        <li>
-          {{ data.content }}
-          <div class="tool">
-            <ion-icon id="trash" name="trash-outline" @click="removeToDo(index)"></ion-icon>
-            <ion-icon id="check" name="checkmark-done-outline" @click="doneTodo(data, index)"></ion-icon>
-          </div>
-        </li>
-      </ul>
-    </div>
-    <div class="complete">
-      <h2>
-        COMPLETED
-        <img src="/assets/tick.ico" />
-      </h2>
-      <ul v-for="(unData, unIndex) in unListData" :key="unData.unId">
-        <span
-          v-bind:style="{
-            textDecoration: 'line-through',
-            background: 'rgba(0, 177, 59, 0.39)',
-          }"
-        >{{ unIndex }}</span>
-        <li
-          v-bind:style="{
-            textDecoration: 'line-through',
-            background: 'rgba(0, 177, 59, 0.39)',
-          }"
+  <div class="grid w-screen h-screen justify-center items-center">
+    <header class="flex justify-center items-center min-h-18">
+      <img class="w-13 h-13" src="/label_main.png" alt="Vue logo" />
+      <h1 class="text-5xl p-0">{{ msg }}</h1>
+    </header>
+    <form class="flex justify-center items-center gap-1.5 h-10" @submit.prevent="addNewToDo">
+        <input
+          class="p-1.5 rounded-3xl outline-none w-11/12 h-10"
+          type="text"
+          placeholder="✎ add somethings daily to do..."
+          onfocus="this.placeholder = ''"
+          onblur="this.placeholder = '✎ add somethings daily to do...'"
+          v-model="inputData"
+          name="newToDo"
+        />
+        <button
+          class="text-white bg-gray-800 rounded-lg text-xl border-none w-20 h-10 cursor-pointer transition duration-400"
+          type="submit"
         >
-          {{ unData.unContent }}
-          <div class="tool">
-            <ion-icon
-              id="trash"
-              v-bind:style="{ marginRight: '20px' }"
-              name="trash-outline"
-              @click="removeUnToDo(unIndex)"
-            ></ion-icon>
-          </div>
-        </li>
-      </ul>
+          <ion-icon name="bookmarks-outline"></ion-icon>Add
+        </button>
+      </form>
+    <div class="flex-row">
+      <div class="flex justify-center max-h-6">
+          <h2>UNCOMPLETED</h2>
+          <img class="w-6 h-7" src="/assets/cross.ico" />
+        </div>
+      <div class="un-complete devide-y-2 divide-solid divide-gray-500 overflow-y-scroll max-h-50">
+        <ul class="flex mt-2" v-for="(data, index) in listData" :key="data.id">
+          <li
+            class="rounded-lg py-1 text-2xl max-w-1/12 p-3 mr-1"
+            v-bind:style="{
+              background: 'rgba(255, 255, 255, 0.2)'
+            }"
+          >{{ index }}</li>
+          <li
+            class="w-11/12 flex justify-between items-center text-2xl rounded-lg pl-3 pr-3"
+            v-bind:style="{
+              background: 'rgba(255, 255, 255, 0.2)'
+            }"
+          >
+            {{ data.content }}
+            <div class="tool">
+              <ion-icon
+                class="duration-300 mx-2 cursor-pointer"
+                id="trash"
+                name="trash-outline"
+                @click="removeToDo(index)"
+              ></ion-icon>
+              <ion-icon class="mx-2 cursor-pointer" id="check" name="checkmark-done-outline" @click="doneTodo(data, index)"></ion-icon>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="flex justify-center max-h-6">
+          <h2>COMPLETED</h2>
+          <img class="w-6 h-7" src="/assets/tick.ico" />
+        </div>
+      <div class="complete overflow-y-scroll max-h-50">
+        <ul class="flex" v-for="(unData, unIndex) in unListData" :key="unData.unId">
+          <li
+            class="rounded-lg py-1 text-2xl max-w-1/12 p-3 mr-1"
+            v-bind:style="{
+              textDecoration: 'line-through',
+              background: 'rgba(0, 177, 59, 0.39)',
+            }"
+          >{{ unIndex }}</li>
+          <li
+            class="w-11/12 flex justify-between items-center text-2xl rounded-lg pl-3 pr-3"
+            v-bind:style="{
+              textDecoration: 'line-through',
+              background: 'rgba(0, 177, 59, 0.39)',
+            }"
+          >
+            {{ unData.unContent }}
+            <div class="tool flex">
+              <ion-icon class="mx-2 cursor-pointer"
+                id="trash"
+                v-bind:style="{ marginRight: '20px' }"
+                name="trash-outline"
+                @click="removeUnToDo(unIndex)"
+              ></ion-icon>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
-  <div class="statistical">
-    <div>
-      <p>
-        <ion-icon name="wallet-outline"></ion-icon>
-        Total: {{ listData.length + unListData.length }}
-      </p>
-      <p><ion-icon name="extension-puzzle-outline"></ion-icon>Unfinish: {{ listData.length }}</p>
-      <p><ion-icon name="cloud-done-outline"></ion-icon>Done: {{ unListData.length }}</p>
-      <p><ion-icon name="analytics-outline"></ion-icon>
-        Process:
-        {{ (unListData.length / (listData.length + unListData.length)) * 100 }}%
-      </p>
+    <div class="statistical rounded-xl border-1 border-dotted border-gray-600 grid h-12" v-bind:style="{background: 'rgba(94, 94, 94, 0.1'}">
+      <div class="flex justify-around items-center">
+        <p>
+          <ion-icon name="wallet-outline"></ion-icon>
+          Total: {{ total }}
+        </p>
+        <p>
+          <ion-icon name="extension-puzzle-outline"></ion-icon>
+          Unfinish: {{ listData.length }}
+        </p>
+        <p>
+          <ion-icon name="cloud-done-outline"></ion-icon>
+          Done: {{ unListData.length }}
+        </p>
+        <p>
+          <ion-icon name="analytics-outline"></ion-icon>
+          Process:
+          {{ process() }}%
+        </p>
+      </div>
+      <div>
+        <p>
+          <ion-icon name="pencil-outline"></ion-icon>
+          Last note: {{ this.timeData }}
+        </p>
+      </div>
     </div>
-    <div>
-      <p><ion-icon name="pencil-outline"></ion-icon>Last note: {{ this.timeData }}</p>
+    <div class="footer">
+      <div class="mode" @click="mode">
+        <ion-icon name="sunny-outline" v-if="isLight == true"></ion-icon>
+        <ion-icon
+          name="moon-outline"
+          v-if="isLight == false"
+          v-bind:style="{ filter: 'invert(100%)' }"
+        ></ion-icon>
+      </div>
+      <a class="author" href="https://github.com/thuongtruong1009/">
+        <p>view source code</p>
+        <ion-icon name="logo-github"></ion-icon>
+      </a>
     </div>
-  </div>
-  <div class="footer">
-    <div class="mode" @click="mode">
-      <ion-icon name="sunny-outline" v-if="isLight == true"></ion-icon>
-      <ion-icon
-        name="moon-outline"
-        v-if="isLight == false"
-        v-bind:style="{ filter: 'invert(100%)' }"
-      ></ion-icon>
-    </div>
-    <a class="author" href="https://github.com/thuongtruong1009/">
-      <p>view source code</p>
-      <ion-icon name="logo-github"></ion-icon>
-    </a>
   </div>
 </template>
 
@@ -107,6 +140,7 @@ export default {
       unListData: [],
       isLight: true,
       timeData: "",
+      total: 0
     };
   },
 
@@ -122,14 +156,15 @@ export default {
         dateArr.push(split[i]);
       }
       dateArr.splice(4, 0, " - ");
-      var date = dateArr.join(" ");
-      this.timeData = date;
+      this.timeData = dateArr.join(" ");
+      this.total = this.listData.length + this.unListData.length;
     },
     removeToDo(index) {
       this.listData.splice(index, 1);
     },
     removeUnToDo(index) {
       this.unListData.splice(index, 1);
+      this.total = this.listData.length + this.unListData.length;
     },
     doneTodo(data, index) {
       this.unListData.push({ unId: Date.now(), unContent: data.content });
@@ -139,66 +174,25 @@ export default {
       this.$emit("mode", event);
       this.isLight = !this.isLight;
     },
+    process() {
+      return parseFloat((this.unListData.length * 100 / (this.listData.length + this.unListData.length)).toString()).toFixed(2);
+    },
   },
 };
 </script>
 
 <style scoped>
-header {
-  display: flex;
-  justify-content: center;
-  grid-gap: 20px;
-}
 header > h1 {
-  font-size: 3rem;
   font-family: "Balsamiq Sans", cursive;
   text-shadow: 4px 4px 2px gray;
 }
-header > img {
-  width: 75px;
-  height: 80px;
-}
-/*-----------------container-----------------------*/
-.container {
-  width: 700px;
-  flex-direction: row;
-  margin-top: 30px;
-}
 
-form {
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  grid-gap: 20px;
-}
-
-form input {
-  width: 80%;
-  height: 40px;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  outline: none;
-  border-radius: 20px;
+form input[type="text"] {
+  font-style: italic;
   box-shadow: 3px 1px 7px gray;
 }
 
-form input[type="text"] {
-  padding-left: 15px;
-  font-style: italic;
-}
-
 form button {
-  color: #ffffff;
-  background-color: rgba(0, 0, 0, 0.849);
-  border-radius: 13px;
-  font-size: 1.1rem;
-  border: none;
-  transition: 0.4s;
-  height: 40px;
-  width: 70px;
-  cursor: pointer;
   box-shadow: 1px 1px 2px rgb(80, 80, 80);
 }
 
@@ -207,57 +201,12 @@ form button:hover {
   box-shadow: 4px 4px 3px rgba(94, 94, 94, 0.9);
 }
 
-.un-complete {
-  border-top: 2px solid gray;
-  margin-top: 20px;
-}
-
-.complete {
-  border-top: 2px solid gray;
-}
-
 h2 {
-  display: flex;
-  justify-content: center;
   font-family: "Ubuntu", sans-serif;
 }
 
-h2 img {
-  transform: translateY(-2px) scale(0.9);
-  margin-left: 5px;
-}
-
 li {
-  display: flex;
-  justify-content: space-between;
-  font-size: 1.5rem;
-  width: 90%;
-  margin-bottom: 10px;
-  padding: 2px 0 10px 20px;
-  border-radius: 8px;
   font-family: "Mukta", sans-serif;
-  background: rgba(255, 255, 255, 0.2);
-  /* background: rgba(0, 177, 59, 0.39), */
-}
-ul {
-  display: flex;
-  grid-gap: 10px;
-  padding: 0;
-}
-ul > span {
-  width: 8%;
-  height: 100%;
-  padding: 12px 0;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.2);
-  font-size: 1.5rem;
-}
-.tool {
-  display: flex;
-  grid-gap: 25px;
-  margin-right: 20px;
-  padding-top: 10px;
-  cursor: pointer;
 }
 .tool > ion-icon:hover {
   transition: 0.3s;
@@ -269,11 +218,6 @@ ul > span {
 .tool #check {
   color: rgb(1, 165, 1);
   transform: scale(1.2);
-}
-button {
-  outline: none;
-  border: none;
-  background: transparent;
 }
 
 #delBtn,
@@ -297,27 +241,6 @@ button {
 #checkBtn {
   --distance: 25%;
 }
-/*---------- statistical --------------------------*/
-.statistical {
-  display: grid;
-  grid-gap: 0;
-  background: rgba(150, 150, 150, 0.247);
-  /* background: pink; */
-  border: 1px dotted rgba(128, 128, 128, 0.719);
-  border-radius: 10px;
-}
-.statistical > div {
-  height: auto;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  margin: 0;
-}
-.statistical > p {
-  margin: 0;
-  padding: 0;
-}
-
 /*---------- author -------------------------------*/
 .footer {
   width: 200px;

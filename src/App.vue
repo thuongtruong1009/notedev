@@ -28,7 +28,7 @@ export default {
 </script>
 
 <template>
-  <HelloWorld @mode="lightMode(this.status)" />
+  <HelloWorld  @mode="lightMode(this.status)" />
 </template>
 
 <style>
@@ -38,13 +38,28 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  background: linear-gradient(139deg, #03ddffcb 0%, #ff0381b6 90%);
+  /* background-size: 100% 140%; */
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
 }
 body {
-  display: flex;
-  justify-content: center;
-  height: 100%;
-  background: linear-gradient(139deg, #03ddffcb 0%, #ff0381b6 90%);
-  background-size: 100% 140%;
+
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+}
+::-webkit-scrollbar,
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #785a28;
+  border-radius: 300px;
 }
 </style>
