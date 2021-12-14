@@ -5,9 +5,9 @@
 
 ---
 ### Screen shots
-![screenshots](/screenshots/light_main_screen.png)
+![screenshots](public/screenshots/light_main_screen.png)
 
-![screenshots](/screenshots/dark_main_screen.png)
+![screenshots](public/screenshots/dark_main_screen.png)
 
 ---
 ### How to install - ViteJs 3 template at https://vitejs.dev/
@@ -44,6 +44,10 @@ npm run build
 + To test with npm
 ```script
 npm run test
+```
++ WindiCSS with Vite
+```script
+https://windicss.org/integrations/vite.html
 ```
 ---
 ### Refference
