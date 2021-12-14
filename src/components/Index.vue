@@ -4,9 +4,9 @@
       <img class="w-13 h-13" src="/label_main.png" alt="Vue logo" />
       <h1 class="text-5xl p-0">{{ msg }}</h1>
     </header>
-    <form class="flex justify-center items-center gap-1.5 h-10" @submit.prevent="addNewToDo">
+    <form class="flex justify-center items-center gap-x-1.7 h-10" @submit.prevent="addNewToDo">
         <input
-          class="p-1.5 rounded-3xl outline-none w-11/12 h-10"
+          class="pl-5 rounded-3xl outline-none border-none w-11/12 h-10"
           type="text"
           placeholder="✎ add somethings daily to do..."
           onfocus="this.placeholder = ''"
@@ -15,16 +15,16 @@
           name="newToDo"
         />
         <button
-          class="text-white bg-gray-800 rounded-lg text-xl border-none w-20 h-10 cursor-pointer transition duration-400"
+          class="text-white bg-gray-800 rounded-lg text-xl border-none w-10 h-10 cursor-pointer transition duration-400"
           type="submit"
         >
-          <ion-icon name="bookmarks-outline"></ion-icon>Add
+          <ion-icon name="bookmarks-outline"></ion-icon>
         </button>
       </form>
     <div class="flex-row">
       <div class="flex justify-center max-h-6">
           <h2>UNCOMPLETED</h2>
-          <img class="w-6 h-7" src="/assets/cross.ico" />
+          <img class="w-6 h-7 ml-1" src="/assets/cross.ico" />
         </div>
       <div class="un-complete devide-y-2 divide-solid divide-gray-500 overflow-y-scroll max-h-50">
         <ul class="flex mt-2" v-for="(data, index) in listData" :key="data.id">
@@ -55,10 +55,10 @@
       </div>
       <div class="flex justify-center max-h-6">
           <h2>COMPLETED</h2>
-          <img class="w-6 h-7" src="/assets/tick.ico" />
+          <img class="w-6 h-7 ml-1" src="/assets/tick.ico" />
         </div>
       <div class="complete overflow-y-scroll max-h-50">
-        <ul class="flex" v-for="(unData, unIndex) in unListData" :key="unData.unId">
+        <ul class="flex mt-2" v-for="(unData, unIndex) in unListData" :key="unData.unId">
           <li
             class="rounded-lg py-1 text-2xl max-w-1/12 p-3 mr-1"
             v-bind:style="{
@@ -113,18 +113,17 @@
         </p>
       </div>
     </div>
-    <div class="footer">
-      <div class="mode" @click="mode">
-        <ion-icon name="sunny-outline" v-if="isLight == true"></ion-icon>
-        <ion-icon
+    <div class="footer grid justify-end items-center absolute w-50 h-27.5 right-10 bottom-7.8">
+      <div class="mode justify-self-end duration-700 rounded-full cursor-pointer w-9 h-9 bg-gray-100" @click="mode">
+        <ion-icon class="w-9 h-9" name="sunny-outline" v-if="isLight === true">🌤</ion-icon>
+        <ion-icon class="w-9 h-9"
           name="moon-outline"
-          v-if="isLight == false"
-          v-bind:style="{ filter: 'invert(100%)' }"
-        ></ion-icon>
+          v-if="isLight === false"
+        >🌙</ion-icon>
       </div>
-      <a class="author" href="https://github.com/thuongtruong1009/">
-        <p>view source code</p>
-        <ion-icon name="logo-github"></ion-icon>
+      <a class="author duration-300 w-9 h-9 rounded-2xl flex justify-around" href="https://github.com/thuongtruong1009/notedev/fork">
+        <p class="hidden ml-1.1 mt-2.5">view source code</p>
+        <ion-icon class="w-9 h-9" name="logo-github"></ion-icon>
       </a>
     </div>
   </div>
@@ -187,18 +186,19 @@ header > h1 {
   text-shadow: 4px 4px 2px gray;
 }
 
-form input[type="text"] {
+form > input[type="text"] {
   font-style: italic;
   box-shadow: 3px 1px 7px gray;
 }
 
-form button {
+form > button {
   box-shadow: 1px 1px 2px rgb(80, 80, 80);
 }
 
-form button:hover {
+form > button:hover {
   transform: translateY(-4px) scale(1.02);
   box-shadow: 4px 4px 3px rgba(94, 94, 94, 0.9);
+  border: 1px solid gray;
 }
 
 h2 {
@@ -220,85 +220,19 @@ li {
   transform: scale(1.2);
 }
 
-#delBtn,
-#checkBtn {
-  transition: 0.3s;
-  position: absolute;
-  font-size: 1.2rem;
-  right: var(--distance);
-}
-
-#delBtn:hover,
-#checkBtn:hover {
-  cursor: pointer;
-  transform: translateY(-4px);
-}
-
-#delBtn {
-  --distance: 30%;
-}
-
-#checkBtn {
-  --distance: 25%;
-}
-/*---------- author -------------------------------*/
-.footer {
-  width: 200px;
-  height: 110px;
-  position: absolute;
-  right: 40px;
-  bottom: 30px;
-  display: grid;
-  grid-template-rows: 50px 50px;
-  grid-gap: 10px;
-  justify-content: right;
-  align-items: center;
-}
-.author {
-  /* position: relative;
-  right: 40px;
-  bottom: 30px;  */
-  transition: 0.4s;
-  width: 35px;
-  height: 37px;
-  border-radius: 20px;
-  display: flex;
-  justify-content: space-around;
-}
 .author:hover {
   background: white;
   width: 180px;
-}
-.author > p {
-  margin-left: 5px;
-  margin-top: 10px;
-  display: none;
 }
 .author:hover.author > p {
   display: block;
 }
 .author > ion-icon {
-  width: 35px;
-  height: 35px;
   color: rgb(17, 0, 255);
 }
 .mode {
-  /* position: relative;
-  margin-right: 10px;
-  margin-bottom: 10px; */
-  justify-self: end;
-  transition: 0.7s;
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  background: rgba(253, 253, 253, 0.808);
   box-shadow: 3px 3px 15px rgb(168, 85, 153), -3px 3px 15px rgb(168, 85, 153),
     3px -3px 15px rgb(168, 85, 153), -3px -3px 15px rgb(168, 85, 153);
-  cursor: pointer;
-}
-.mode > ion-icon {
-  width: 35px;
-  height: 35px;
 }
 .mode:hover {
   transform: scale(0.9) rotate(360deg);

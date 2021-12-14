@@ -9,18 +9,16 @@ export default {
   },
   methods: {
     lightMode(status) {
-      const temp = document.querySelector("body");
-      const colorText = document.querySelector("#app");
+      const colorApp = document.querySelector("#app");
       if (status == true) {
-        temp.style.background = "black";
         this.status = false;
-        colorText.style.color = "white";
+        colorApp.style.color = "white";
+        colorApp.style.background = "black";
       } else {
-        temp.style.background =
+        colorApp.style.background =
           "linear-gradient(139deg, #03ddffcb 0%, #ff0381b6 90%)";
-        temp.style.backgroundSize = "100% 140%";
         this.status = true;
-        colorText.style.color = "black";
+        colorApp.style.color = "black";
       }
     },
   },
@@ -43,23 +41,5 @@ export default {
   background-size: cover;
   width: 100vw;
   height: 100vh;
-}
-body {
-
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
-::-webkit-scrollbar {
-  width: 3px;
-  height: 3px;
-}
-::-webkit-scrollbar,
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-::-webkit-scrollbar-thumb {
-  background: #785a28;
-  border-radius: 300px;
 }
 </style>
