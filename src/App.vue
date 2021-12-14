@@ -1,5 +1,5 @@
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import HelloWorld from "./components/Index.vue";
 export default {
   components: { HelloWorld },
   data() {

@@ -45,6 +45,10 @@ npm run build
 ```script
 npm run test
 ```
++ WindiCSS with Vite
+```script
+https://windicss.org/integrations/vite.html
+```
 ---
 ### Refference
 - Recommended IDE Setup [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
