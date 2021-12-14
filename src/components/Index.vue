@@ -26,7 +26,7 @@
           <h2>UNCOMPLETED</h2>
           <img class="w-6 h-7 ml-1" src="/assets/cross.ico" />
         </div>
-      <div class="un-complete devide-y-2 divide-solid divide-gray-500 overflow-y-scroll max-h-50">
+      <div class="un-complete overflow-y-scroll max-h-50 border-b-2 border-gray-500 pb-2">
         <ul class="flex mt-2" v-for="(data, index) in listData" :key="data.id">
           <li
             class="rounded-lg py-1 text-2xl max-w-1/12 p-3 mr-1"

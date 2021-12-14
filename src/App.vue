@@ -26,7 +26,7 @@ export default {
 </script>
 
 <template>
-  <HelloWorld  @mode="lightMode(this.status)" />
+  <HelloWorld  class="min-width-95" @mode="lightMode(this.status)" />
 </template>
 
 <style>
