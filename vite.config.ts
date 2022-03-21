@@ -15,6 +15,7 @@ export default defineConfig({
         "robots.txt",
         "apple-touch-icon.png",
       ],
+      registerType: 'autoUpdate',
       manifest: {
         name: "Notedev",
         short_name: "Desktop",
